@@ -10,28 +10,27 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            Rectangle rectangle = new Rectangle();
+            Console.WriteLine("Enter width = ");
 
-            Console.WriteLine("Enter width =");
-
-            string width = Console.ReadLine();
-            rectangle.setWidth(int.Parse(width));
-
-            Console.WriteLine("Enter height =");
-
-            string height = Console.ReadLine();
-            rectangle.setHeight(int.Parse(height));
-
-            try
+            if (int.TryParse(Console.ReadLine(), out int width) && width > 0)
             {
-                int result = rectangle.getSquare();
-                Console.WriteLine("Square = " + result);
+                Console.WriteLine("Enter height = ");
+
+                if (int.TryParse(Console.ReadLine(), out int height) && height > 0)
+                {
+                    Console.WriteLine($"Square = {width * height} ");
+                }
+                else
+                {
+                    Console.WriteLine("Height must be a number greater than zero!");
+                }
             }
-            catch
+            else
             {
-                Console.WriteLine("Width or height can not be negative or null.\nPress any key to exit");
+                Console.WriteLine("Width must be a number greater than zero!");
             }
 
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }
