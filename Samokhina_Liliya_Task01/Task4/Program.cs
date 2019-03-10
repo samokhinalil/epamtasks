@@ -12,32 +12,34 @@ namespace Task4
         {
             Console.WriteLine("Enter n =");
 
-            string s = Console.ReadLine();
-            int n = int.Parse(s);
-            int k = n;
-            int currentPositionX = n;
-            int currentPositionY = 0;
-            StringBuilder image = new StringBuilder("*");
-
-            Console.Clear();
-
-            for (int i = 0; i < n; i++)
+            if (int.TryParse(Console.ReadLine(), out int n))
             {
-                for (int j = 0; j < n - k + 1; j++)
+                int currentPositionX = n;
+                int currentPositionY = 0;
+                int k = n;
+
+                Console.Clear();
+
+                for (int i = 0; i < n; i++)
                 {
-                    Console.SetCursorPosition(currentPositionX, currentPositionY);
-                    Console.WriteLine(image);
-
-                    image.Append("**");
-                    currentPositionX--;
-                    currentPositionY++;
+                    for (int j = 0; j < n - k + 1; j++)
+                    {
+                        var line = new string('*', j * 2 + 1);
+                        Console.SetCursorPosition(currentPositionX, currentPositionY);
+                        Console.WriteLine(line);
+                        currentPositionX--;
+                        currentPositionY++;
+                    }
+                    currentPositionX = n;
+                    k--;
                 }
-
-                image = new StringBuilder("*");
-                currentPositionX = n;
-                k--;
+            }
+            else
+            {
+                Console.WriteLine("Data entered incorrectly");
             }
 
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }

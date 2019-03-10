@@ -11,17 +11,21 @@ namespace Task2
         static void Main(string[] args)
         {
             Console.WriteLine("Enter n =");
-
-            string s = Console.ReadLine();
-            int n = int.Parse(s);
-            StringBuilder image = new StringBuilder("*");
-
-            for (int i = 0; i < n; i++)
+            
+            if (int.TryParse(Console.ReadLine(), out int n))
             {
-                Console.WriteLine(image);
-                image.Append("*");
+                for (int i = 0; i < n; i++)
+                {
+                    var line = new string('*', i + 1);
+                    Console.WriteLine(line);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Data entered incorrectly");
             }
 
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }

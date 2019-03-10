@@ -12,21 +12,26 @@ namespace Task3
         {
             Console.WriteLine("Enter n =");
 
-            string s = Console.ReadLine();
-            int n = int.Parse(s);
-            int currentPositionX = n;
-            StringBuilder image = new StringBuilder("*");
-
-            Console.Clear();
-
-            for (int i = 0; i < n; i++)
+            if(int.TryParse(Console.ReadLine(), out int n))
             {
-                Console.SetCursorPosition(currentPositionX, i);
-                Console.WriteLine(image);
-                image.Append("**");
-                currentPositionX--;
+                int currentPositionX = n;
+
+                Console.Clear();
+
+                for (int i = 0; i < n; i++)
+                {
+                    var line = new string('*', i * 2 + 1);
+                    Console.SetCursorPosition(currentPositionX, i);
+                    Console.WriteLine(line);
+                    currentPositionX--;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Data entered incorrectly");
             }
 
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }
