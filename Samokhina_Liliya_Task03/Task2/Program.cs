@@ -24,7 +24,7 @@ namespace Task2
             Console.ReadKey();
         }
 
-        private static int[,,] InitializeArray(int size1, int size2, int size3)
+        public static int[,,] InitializeArray(int size1, int size2, int size3)
         {
             var array = new int[size1, size2, size3];
 
@@ -43,7 +43,7 @@ namespace Task2
             return array;
         }
 
-        private static void ShowArray(int[,,] array)
+        public static void ShowArray(int[,,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -59,7 +59,7 @@ namespace Task2
             }
         }
 
-        private static void ChangePositiveItemsToNull(int[,,] array)
+        public static void ChangePositiveItemsToNull(int[,,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {

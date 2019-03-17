@@ -26,7 +26,7 @@ namespace Task1
             Console.ReadKey();
         }
 
-        private static int[] InitializeArray(int size)
+        public static int[] InitializeArray(int size)
         {
             Random random = new Random();
             int[] array = new int[size];
@@ -39,7 +39,7 @@ namespace Task1
             return array;
         }
 
-        private static void ShowArray(int[] array)
+        public static void ShowArray(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -47,8 +47,8 @@ namespace Task1
             }
             Console.WriteLine();
         }
-        
-        private static int FindMax(int[] array)
+
+        public static int FindMax(int[] array)
         {
             int max = array[0];
 
@@ -63,7 +63,7 @@ namespace Task1
             return max;
         }
 
-        private static int FindMin(int[] array)
+        public static int FindMin(int[] array)
         {
             int min = array[0];
 
@@ -78,7 +78,7 @@ namespace Task1
             return min;
         }
 
-        private static void Sort(int[] array)
+        public static void Sort(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {

@@ -20,7 +20,7 @@ namespace Task3
             Console.ReadKey();
         }
 
-        private static int[] InitializeArray(int size)
+        public static int[] InitializeArray(int size)
         {
             Random random = new Random();
             int[] array = new int[size];
@@ -32,7 +32,7 @@ namespace Task3
             return array;
         }
 
-        private static void ShowArray(int[] array)
+        public static void ShowArray(int[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -41,7 +41,7 @@ namespace Task3
             Console.WriteLine();
         }
 
-        private static int FindPositiveItemsSum(int[] array)
+        public static int FindPositiveItemsSum(int[] array)
         {
             int sum = 0;
 

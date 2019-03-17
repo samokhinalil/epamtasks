@@ -20,7 +20,7 @@ namespace Task4
             Console.ReadKey();
         }
 
-        private static int[,] InitializeArray(int size1, int size2)
+        public static int[,] InitializeArray(int size1, int size2)
         {
             var array = new int[size1, size2];
 
@@ -37,7 +37,7 @@ namespace Task4
             return array;
         }
 
-        private static void ShowArray(int[,] array)
+        public static void ShowArray(int[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -49,7 +49,7 @@ namespace Task4
             }
         }
 
-        private static int FindEvenItemsSum(int[,] array)
+        public static int FindEvenItemsSum(int[,] array)
         {
             int sum = 0;
             for (int i = 0; i < array.GetLength(0); i++)
