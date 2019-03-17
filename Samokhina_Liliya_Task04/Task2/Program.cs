@@ -9,19 +9,15 @@ namespace Task2
     class Program
     {
 
-        private static string DoubleCharactersInFirstLineFromSecondLine(string firstLine,
+        public static string DoubleCharactersInFirstLineFromSecondLine(string firstLine,
             string secondLine)
         {
             StringBuilder finalString = new StringBuilder();
 
             foreach (var character in firstLine)
             {
+                finalString.Append(character);
                 if (secondLine.Contains(character))
-                {
-                    finalString.Append(character);
-                    finalString.Append(character);
-                }
-                else
                 {
                     finalString.Append(character);
                 }

@@ -2,26 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Task1
 {
     class Program
     {
-        private static double СountAverageWordLength(string originString)
+        public static double СountAverageWordLength(string originString)
         {
-            double averageWordLength = 0.0;
-            string[] array = originString.Split(new char[] { ' ', ',', '.', '!', '?'},
-                StringSplitOptions.RemoveEmptyEntries);
+            var array = originString.ToCharArray();
+            bool word = false;
+            double sum = 0.0;
+            int wordsNumber = 0;
 
             for (int i = 0; i < array.Length; i++)
             {
-                averageWordLength += array[i].Length;
+                if(char.IsLetter(array[i]) && word == false)
+                {
+                    wordsNumber++;
+                }
+
+                if (char.IsLetter(array[i]))
+                {
+                    word = true;
+                    sum++;
+                }
+                else
+                {
+                    word = false;
+                }
             }
 
-            averageWordLength /= array.Length;
-
-            return averageWordLength;
+            return sum/wordsNumber;
         }
 
         static void Main(string[] args)

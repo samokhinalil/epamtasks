@@ -9,7 +9,7 @@ namespace Task3
 {
     class Program
     {
-        private static void CompareCultureParams(string culture1, string culture2)
+        public static void CompareCultureParams(string culture1, string culture2)
         {
             CultureInfo cult1 = new CultureInfo(culture1);
             CultureInfo cult2 = new CultureInfo(culture2);

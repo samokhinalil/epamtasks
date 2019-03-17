@@ -15,10 +15,10 @@ namespace Task4
             Stopwatch timer2 = new Stopwatch();
             string str = "";
             StringBuilder sb = new StringBuilder();
-            int N = 100;
+            int n = 100;
 
             timer1.Start();
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 str += "*";
             }
@@ -26,7 +26,7 @@ namespace Task4
             Console.WriteLine($"String execution time: {timer1.Elapsed}");
 
             timer2.Start();
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 sb.Append("*");
             }

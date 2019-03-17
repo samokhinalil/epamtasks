@@ -9,9 +9,9 @@ namespace Task7
 {
     class Program
     {
-        private static int CountTimeNumber(string input)
+        public static int CountTimeNumber(string input)
         {
-            //var match = Regex.Matches(input, @"(\s|^)([01]?[0-9]|2[0-3]):[0-5][0-9](\s|$)");
+            //var match = Regex.Matches(input, @"(^|\s)([01]?[0-9]|2[0-3]):[0-5][0-9]($|\s)");
             //return match.Count;
 
             int count = 0;
