@@ -13,7 +13,7 @@ namespace Task1
             try
             {
                 var date = new DateTime(1998, 03, 16);
-                User user1 = new User("surname", "name", "patr", ref date);
+                User user1 = new User("surname", "name", "patr", date);
                 Console.WriteLine(user1.ToString());
             }
             catch (Exception ex)

@@ -12,23 +12,6 @@ namespace Task2
         public int Y { get; set; }
         private double r;
 
-        public Round(int x, int y, double r)
-        {
-            X = x;
-            Y = y;
-            R = r;
-        }
-
-        public Round(int x, int y):this(x, y, 1)
-        {
-
-        }
-
-        public Round():this(0, 0, 1)
-        {
-
-        }
-
         public double R
         {
             get
@@ -65,5 +48,21 @@ namespace Task2
             }
         }
 
+        public Round(int x, int y, double r)
+        {
+            X = x;
+            Y = y;
+            R = r;
+        }
+
+        public Round(int x, int y) : this(x, y, 1)
+        {
+
+        }
+
+        public Round() : this(0, 0, 1)
+        {
+
+        }
     }
 }

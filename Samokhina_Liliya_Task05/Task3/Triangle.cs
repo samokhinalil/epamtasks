@@ -8,23 +8,9 @@ namespace Task3
 {
     class Triangle
     {
-        public int A { get; set; }
-        public int B { get; set; }
-        public int C { get; set; }
-
-        public Triangle(int a, int b, int c)
-        {
-            if (a > 0 && b > 0 && c > 0 && a + b > c && b + c > a && a + c > b)
-            {
-                A = a;
-                B = b;
-                C = c;
-            }
-            else
-            {
-                throw new Exception("This triangle does not exist");
-            }
-        }
+        public int A { get; }
+        public int B { get; }
+        public int C { get; }
 
         public double Perimeter
         {
@@ -37,6 +23,20 @@ namespace Task3
             {
                 double p = Perimeter / 2;
                 return Math.Sqrt(p * (p - A) * (p - B) * (p - C));
+            }
+        }
+
+        public Triangle(int a, int b, int c)
+        {
+            if (a > 0 && b > 0 && c > 0 && a + b > c && b + c > a && a + c > b)
+            {
+                A = a;
+                B = b;
+                C = c;
+            }
+            else
+            {
+                throw new Exception("This triangle does not exist");
             }
         }
     }

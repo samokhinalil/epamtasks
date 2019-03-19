@@ -15,15 +15,6 @@ namespace Task1
         private DateTime birthDate;
         private int age;
 
-        public User(string surname, string name, string patronymic, ref DateTime birthDate)
-        {
-            Surname = surname;
-            Name = name;
-            Patronymic = patronymic;
-            BirthDate = birthDate;
-            this.age = Age;
-        }
-
         public string Surname
         {
             get
@@ -33,7 +24,7 @@ namespace Task1
 
             set
             {
-                ValidateName(value, ref this.surname);
+                ValidateName(value, ref this.surname, "Surname");
             }
         }
 
@@ -46,7 +37,7 @@ namespace Task1
 
             set
             {
-                ValidateName(value, ref this.name);
+                ValidateName(value, ref this.name, "Name");
             }
         }
 
@@ -59,7 +50,7 @@ namespace Task1
 
             set
             {
-                ValidateName(value, ref this.patronymic);
+                ValidateName(value, ref this.patronymic, "Patronymic");
             }
         }
 
@@ -99,22 +90,31 @@ namespace Task1
             }
         }
 
+        public User(string surname, string name, string patronymic, DateTime birthDate)
+        {
+            Surname = surname;
+            Name = name;
+            Patronymic = patronymic;
+            BirthDate = birthDate;
+            this.age = Age;
+        }
+
         override public string ToString()
         {
             return Surname + " " + Name + " " + Patronymic + " " + BirthDate + " " + Age;
         }
 
-        private void ValidateName(string value, ref string namePart)
+        private void ValidateName(string value, ref string field, string exceptionMessage)
         {
             if (!string.IsNullOrEmpty(value))
             {
                 if (Regex.IsMatch(value, @"[a-zA-Z]+"))
                 {
-                    namePart = value;
+                    field = value;
                 }
                 else
                 {
-                    throw new Exception("Name part can only contains letters");
+                    throw new Exception($"{exceptionMessage} can only contains letters");
                 }
             }
             else
