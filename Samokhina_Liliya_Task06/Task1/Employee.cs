@@ -10,7 +10,6 @@ namespace Task1
     class Employee : User
     {
         private DateTime startWorkDate;
-        private int workExperience;
         private string position;
         private double salary;
 
@@ -22,14 +21,7 @@ namespace Task1
             }
             set
             {
-                if (value.Date.Year > DateTime.Now.Year - 90 && value.Date.Year <= DateTime.Now.Year)
-                {
-                    this.startWorkDate = value;
-                }
-                else
-                {
-                    throw new Exception("Date of start work is incorrect!");
-                }
+                ValidateDate(value, ref this.startWorkDate, 90, "Date of start work is incorrect!");
             }
         }
 
@@ -37,7 +29,7 @@ namespace Task1
         {
             get
             {
-                return this.workExperience = DateTime.Now.Year - this.startWorkDate.Year;
+                return CountYears(this.startWorkDate);
             }
         }
 
@@ -87,6 +79,16 @@ namespace Task1
         public double IncreaseSalary(double increment)
         {
             return Salary += increment;
+        }
+
+        public override string ToString()
+        {
+            return $"Name: {Surname} {Name} {Patronymic}" +
+                $" Birth date: {BirthDate}" +
+                $" Age: {Age}" +
+                $"\nWork experience: {WorkExperience}" +
+                $" Position: {Position}" +
+                $" Salary: {Salary}";
         }
     }
 }

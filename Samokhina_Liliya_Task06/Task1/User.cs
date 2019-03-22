@@ -13,7 +13,6 @@ namespace Task1
         private string name;
         private string patronymic;
         private DateTime birthDate;
-        private int age;
 
         public string Surname
         {
@@ -63,14 +62,7 @@ namespace Task1
 
             set
             {
-                if (value.Date.Year > DateTime.Now.Year - 120 && value.Date.Year < DateTime.Now.Year)
-                {
-                    this.birthDate = value;
-                }
-                else
-                {
-                    throw new Exception("Date of birth is incorrect!");
-                }
+                ValidateDate(value, ref this.birthDate, 120, "Date of birth is incorrect!");
             }
         }
 
@@ -78,15 +70,7 @@ namespace Task1
         {
             get
             {
-                this.age = DateTime.Now.Year - this.birthDate.Year;
-
-                if (DateTime.Now.Month < this.birthDate.Month ||
-                    (DateTime.Now.Month == this.birthDate.Month && DateTime.Now.Day < this.birthDate.Day))
-                {
-                    this.age--;
-                }
-
-                return this.age;
+                return CountYears(this.birthDate);
             }
         }
 
@@ -96,12 +80,11 @@ namespace Task1
             Name = name;
             Patronymic = patronymic;
             BirthDate = birthDate;
-            this.age = Age;
         }
 
-        override public string ToString()
+        public override string ToString()
         {
-            return Surname + " " + Name + " " + Patronymic + " " + BirthDate + " " + Age;
+            return $"{Surname} {Name} {Patronymic} {BirthDate} {Age}";
         }
         
         public void ValidateString(string value, ref string field, string exceptionMessage)
@@ -121,6 +104,35 @@ namespace Task1
             {
                 throw new Exception($"{exceptionMessage} can not be empty!");
             }
+        }
+
+        public void ValidateDate(DateTime value, ref DateTime field,
+            int difference, string exceptionMessage)
+        {
+            DateTime date = DateTime.Now;
+            if (value.Date.Year > date.Year - difference && value.Date.Year <= date.Year)
+            {
+                field = value;
+            }
+            else
+            {
+                throw new Exception(exceptionMessage);
+            }
+        }
+
+        public int CountYears(DateTime field)
+        {
+            int calculatingField;
+            DateTime date = DateTime.Now;
+            calculatingField = date.Year - field.Year;
+
+            if (date.Month < field.Month ||
+                (date.Month == field.Month && date.Day < field.Day))
+            {
+                calculatingField--;
+            }
+
+            return calculatingField;
         }
     }
 }

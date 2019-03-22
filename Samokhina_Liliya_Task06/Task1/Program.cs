@@ -14,8 +14,8 @@ namespace Task1
             {
                 Employee employee = new Employee("surname", "name", "patr",
                     new DateTime(1998, 10, 27), new DateTime(2018, 01, 20), "programmer", 50000);
-
-                Console.WriteLine($"Salary = {employee.Salary}");
+                
+                Console.WriteLine(employee.ToString());
                 employee.IncreaseSalary(10000);
                 Console.WriteLine($"Salary after increasing = {employee.Salary}");
                 Console.WriteLine($"Year salary= {employee.GetYearSalary()}");
