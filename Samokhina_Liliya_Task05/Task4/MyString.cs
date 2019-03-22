@@ -33,7 +33,7 @@ namespace Task4
 
         public static MyString operator -(MyString str1, MyString str2)
         {
-            MyString result = new MyString(str1.ToString().Replace(str2.ToString(), ""));
+            MyString result = new MyString(str1.ToString().Replace(str2.ToString(), string.Empty));
             return result;
         }
 
