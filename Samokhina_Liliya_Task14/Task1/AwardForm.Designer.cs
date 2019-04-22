@@ -60,6 +60,8 @@
             this.tbTitle.Name = "tbTitle";
             this.tbTitle.Size = new System.Drawing.Size(147, 20);
             this.tbTitle.TabIndex = 4;
+            this.tbTitle.Validating += new System.ComponentModel.CancelEventHandler(this.tbTitle_Validating);
+            this.tbTitle.Validated += new System.EventHandler(this.tbTitle_Validated);
             // 
             // tbDescription
             // 
@@ -68,6 +70,8 @@
             this.tbDescription.Name = "tbDescription";
             this.tbDescription.Size = new System.Drawing.Size(147, 43);
             this.tbDescription.TabIndex = 5;
+            this.tbDescription.Validating += new System.ComponentModel.CancelEventHandler(this.tbDescription_Validating);
+            this.tbDescription.Validated += new System.EventHandler(this.tbDescription_Validated);
             // 
             // btnOK
             // 

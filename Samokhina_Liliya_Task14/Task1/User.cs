@@ -15,7 +15,24 @@ namespace Task1
         private string _firstName;
         private string _lastName;
         private DateTime _birthDate;
+
         public List<Award> UserAwards { get; set; }
+
+        public string Awards
+        {
+            get
+            {
+                StringBuilder awardsView = new StringBuilder();
+                if (UserAwards != null)
+                {
+                    foreach (var award in UserAwards)
+                    {
+                        awardsView.Append(award.Title + ";");
+                    }
+                }
+                return awardsView.ToString();
+            }
+        }
 
         public int ID { get; private set; }
 
@@ -101,14 +118,15 @@ namespace Task1
         {
             if (!string.IsNullOrEmpty(value))
             {
-                if (Regex.IsMatch(value, @"[a-zA-Z]+"))
-                {
-                    field = value;
-                }
-                else
-                {
-                    throw new Exception($"{exceptionMessage} can only contains letters");
-                }
+                field = value;
+                //if (Regex.IsMatch(value, @"[a-zA-Z]+"))
+                //{
+                //    field = value;
+                //}
+                //else
+                //{
+                //    throw new Exception($"{exceptionMessage} can only contains letters");
+                //}
             }
             else
             {

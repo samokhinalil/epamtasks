@@ -31,6 +31,11 @@
             this.ctlTabs = new System.Windows.Forms.TabControl();
             this.tabUsers = new System.Windows.Forms.TabPage();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BirthDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Awards = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabAwards = new System.Windows.Forms.TabPage();
             this.dgvAwards = new System.Windows.Forms.DataGridView();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,11 +51,6 @@
             this.ctlAddAward = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlEditAward = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlDeleteAward = new System.Windows.Forms.ToolStripMenuItem();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BirthDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Awards = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctlTabs.SuspendLayout();
             this.tabUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -95,6 +95,41 @@
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.Size = new System.Drawing.Size(621, 341);
             this.dgvUsers.TabIndex = 0;
+            // 
+            // FirstName
+            // 
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.HeaderText = "Имя";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // LastName
+            // 
+            this.LastName.DataPropertyName = "LastName";
+            this.LastName.HeaderText = "Фамилия";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            // 
+            // BirthDate
+            // 
+            this.BirthDate.DataPropertyName = "BirthDate";
+            this.BirthDate.HeaderText = "Дата рождения";
+            this.BirthDate.Name = "BirthDate";
+            this.BirthDate.ReadOnly = true;
+            // 
+            // Age
+            // 
+            this.Age.DataPropertyName = "Age";
+            this.Age.HeaderText = "Возраст";
+            this.Age.Name = "Age";
+            this.Age.ReadOnly = true;
+            // 
+            // Awards
+            // 
+            this.Awards.DataPropertyName = "Awards";
+            this.Awards.HeaderText = "Награды";
+            this.Awards.Name = "Awards";
+            this.Awards.ReadOnly = true;
             // 
             // tabAwards
             // 
@@ -219,41 +254,6 @@
             this.ctlDeleteAward.Size = new System.Drawing.Size(163, 22);
             this.ctlDeleteAward.Text = "Удалить...";
             this.ctlDeleteAward.Click += new System.EventHandler(this.ctlDeleteAward_Click);
-            // 
-            // FirstName
-            // 
-            this.FirstName.DataPropertyName = "FirstName";
-            this.FirstName.HeaderText = "Имя";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            // 
-            // LastName
-            // 
-            this.LastName.DataPropertyName = "LastName";
-            this.LastName.HeaderText = "Фамилия";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            // 
-            // BirthDate
-            // 
-            this.BirthDate.DataPropertyName = "BirthDate";
-            this.BirthDate.HeaderText = "Дата рождения";
-            this.BirthDate.Name = "BirthDate";
-            this.BirthDate.ReadOnly = true;
-            // 
-            // Age
-            // 
-            this.Age.DataPropertyName = "Age";
-            this.Age.HeaderText = "Возраст";
-            this.Age.Name = "Age";
-            this.Age.ReadOnly = true;
-            // 
-            // Awards
-            // 
-            this.Awards.DataPropertyName = "Awards";
-            this.Awards.HeaderText = "Награды";
-            this.Awards.Name = "Awards";
-            this.Awards.ReadOnly = true;
             // 
             // MainForm
             // 

@@ -30,7 +30,7 @@ namespace Task1
             User user1 = new User("user1 firstName", "user1 lastName", new DateTime(1998, 10, 27), new List<Award> { award1, award2 });
             User user2 = new User("user2 firstName", "user2 lastName", new DateTime(2000, 10, 25), new List<Award> { award1 });
             User user3 = new User("user3 firstName", "user3 lastName", new DateTime(1995, 10, 23), new List<Award> { award2 });
-
+            
             _userStorage.Add(user1);
             _userStorage.Add(user2);
             _userStorage.Add(user3);
@@ -46,7 +46,7 @@ namespace Task1
         {
             UserForm userForm = new UserForm(_awardStorage) { Text = "Добавить пользователя" };
             userForm.ShowDialog();
-
+            
             if (userForm.DialogResult == DialogResult.OK)
             {
                 _userStorage.Add(new User(userForm.FirstName, userForm.LastName, userForm.BirthDate, userForm.UserAwards));
@@ -115,6 +115,13 @@ namespace Task1
             if (MessageBox.Show($"Удалить награду {award.Title}?", "Удаление награды",
                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
+                foreach (var user in _userStorage.GetAll())
+                {
+                    if (user.UserAwards.Contains(award))
+                    {
+                        user.UserAwards.Remove(award);
+                    }
+                }
                 _awardStorage.Remove(award);
                 dgvAwards.DataSource = null;
                 dgvAwards.DataSource = _awardStorage.GetAll();

@@ -73,6 +73,8 @@
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(140, 20);
             this.tbFirstName.TabIndex = 7;
+            this.tbFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.tbFirstName_Validating);
+            this.tbFirstName.Validated += new System.EventHandler(this.tbFirstName_Validated);
             // 
             // tbLastName
             // 
@@ -80,6 +82,8 @@
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(140, 20);
             this.tbLastName.TabIndex = 8;
+            this.tbLastName.Validating += new System.ComponentModel.CancelEventHandler(this.tbLastName_Validating);
+            this.tbLastName.Validated += new System.EventHandler(this.tbLastName_Validated);
             // 
             // btnOK
             // 
@@ -110,6 +114,8 @@
             this.ctlBirthDate.Name = "ctlBirthDate";
             this.ctlBirthDate.Size = new System.Drawing.Size(140, 20);
             this.ctlBirthDate.TabIndex = 12;
+            this.ctlBirthDate.Validating += new System.ComponentModel.CancelEventHandler(this.ctlBirthDate_Validating);
+            this.ctlBirthDate.Validated += new System.EventHandler(this.ctlBirthDate_Validated);
             // 
             // ctlAwards
             // 
