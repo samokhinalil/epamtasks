@@ -7,62 +7,70 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UsersAndAwards.Entities;
+using UsersAndAwards.Logic;
 
-namespace Task1
+namespace UsersAndAwards
 {
     public partial class MainForm : System.Windows.Forms.Form
     {
         private enum SortMode { Asceding, Desceding };
         private SortMode _sortMode = SortMode.Asceding;
+        BLogic logic = new BLogic();
 
-        private UserStorage _userStorage = new UserStorage();
-        private AwardStorage _awardStorage = new AwardStorage();
-        
         public MainForm()
         {
             InitializeComponent();
             dgvUsers.AutoGenerateColumns = false;
             dgvAwards.AutoGenerateColumns = false;
-            
+
             Award award1 = new Award("award1", "award1");
             Award award2 = new Award("award2", "award2");
-            
-            _awardStorage.Add(award1);
-            _awardStorage.Add(award2);
+
+            logic.AddAward(award1);
+            logic.AddAward(award2);
 
             User user1 = new User("user1 firstName", "user1 lastName", new DateTime(1998, 10, 27), new List<Award> { award1, award2 });
             User user2 = new User("user2 firstName", "user2 lastName", new DateTime(2000, 10, 25), new List<Award> { award1 });
             User user3 = new User("user3 firstName", "user3 lastName", new DateTime(1995, 10, 23), new List<Award> { award2 });
-            
-            _userStorage.Add(user1);
-            _userStorage.Add(user2);
-            _userStorage.Add(user3);
-            
-            dgvUsers.DataSource = null;
-            dgvUsers.DataSource = _userStorage.GetAll().Select(u => new UserViewModel(u)).ToList();
 
-            dgvAwards.DataSource = null;
-            dgvAwards.DataSource = _awardStorage.GetAll();
+            logic.AddUser(user1);
+            logic.AddUser(user2);
+            logic.AddUser(user3);
+
+            UpdateDgvUsers();
+            UpdateDgvAwards();
         }
 
-        private void ctlAddUser_Click(object sender, EventArgs e)
+        private void UpdateDgvUsers()
         {
-            UserForm userForm = new UserForm(_awardStorage) { Text = "Добавить пользователя" };
+            dgvUsers.DataSource = null;
+            dgvUsers.DataSource = logic.GetAllUsers().Select(u => new UserViewModel(u)).ToList();
+        }
+
+        private void UpdateDgvAwards()
+        {
+            dgvAwards.DataSource = null;
+            dgvAwards.DataSource = logic.GetAllAwards();
+        }
+        
+        private void AddUser()
+        {
+            UserForm userForm = new UserForm(logic);
             userForm.ShowDialog();
-            
+
             if (userForm.DialogResult == DialogResult.OK)
             {
-                _userStorage.Add(new User(userForm.FirstName, userForm.LastName, userForm.BirthDate, userForm.UserAwards));
-                dgvUsers.DataSource = null;
-                dgvUsers.DataSource = _userStorage.GetAll();
+                logic.AddUser(new User(userForm.FirstName, userForm.LastName, userForm.BirthDate, userForm.UserAwards));
+                UpdateDgvUsers();
             }
         }
         
-        private void ctlEditUser_Click(object sender, EventArgs e)
+        private void EditUser()
         {
             UserViewModel userView = (UserViewModel)dgvUsers.CurrentRow.DataBoundItem;
             User user = userView.User;
-            UserForm userForm = new UserForm(user, _awardStorage) { Text = "Редактировать пользователя" };
+            UserForm userForm = new UserForm(user, logic);
             userForm.ShowDialog();
             if (userForm.DialogResult == DialogResult.OK)
             {
@@ -70,97 +78,122 @@ namespace Task1
                 user.LastName = userForm.LastName;
                 user.BirthDate = userForm.BirthDate;
                 user.UserAwards = userForm.UserAwards;
-                dgvUsers.DataSource = null;
-                dgvUsers.DataSource = _userStorage.GetAll();
+                UpdateDgvUsers();
             }
         }
-
-        private void ctlDeleteUser_Click(object sender, EventArgs e)
+        
+        private void DeleteUser()
         {
             UserViewModel userView = (UserViewModel)dgvUsers.CurrentRow.DataBoundItem;
             User user = userView.User;
             if (MessageBox.Show($"Удалить пользователя {user.FirstName}?", "Удаление пользователя",
                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                _userStorage.Remove(user);
-                dgvUsers.DataSource = null;
-                dgvUsers.DataSource = _userStorage.GetAll();
+                logic.RemoveUser(user);
+                UpdateDgvUsers();
             }
         }
-
-        private void ctlAddAward_Click(object sender, EventArgs e)
+        
+        private void AddAward()
         {
-            AwardForm awardForm = new AwardForm { Text = "Добавить награду" };
+            AwardForm awardForm = new AwardForm();
             awardForm.ShowDialog();
             if (awardForm.DialogResult == DialogResult.OK)
             {
-                _awardStorage.Add(new Award(awardForm.Title, awardForm.Description));
-                dgvAwards.DataSource = null;
-                dgvAwards.DataSource = _awardStorage.GetAll();
+                logic.AddAward(new Award(awardForm.Title, awardForm.Description));
+                UpdateDgvAwards();
             }
         }
-
-        private void ctlEditAward_Click(object sender, EventArgs e)
+        
+        private void EditAward()
         {
             Award award = (Award)dgvAwards.CurrentRow.DataBoundItem;
-            AwardForm awardForm = new AwardForm(award) { Text = "Редактировать награду" };
+            AwardForm awardForm = new AwardForm(award);
             awardForm.ShowDialog();
             if (awardForm.DialogResult == DialogResult.OK)
             {
                 award.Title = awardForm.Title;
                 award.Description = awardForm.Description;
-                dgvAwards.DataSource = null;
-                dgvAwards.DataSource = _awardStorage.GetAll();
+                UpdateDgvAwards();
             }
         }
 
-        private void ctlDeleteAward_Click(object sender, EventArgs e)
+        private void DeleteAward()
         {
             Award award = (Award)dgvAwards.CurrentRow.DataBoundItem;
             if (MessageBox.Show($"Удалить награду {award.Title}?", "Удаление награды",
                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                foreach (var user in _userStorage.GetAll())
+                foreach (var user in logic.GetAllUsers())
                 {
                     if (user.UserAwards.Contains(award))
                     {
                         user.UserAwards.Remove(award);
                     }
                 }
-                _awardStorage.Remove(award);
-                dgvAwards.DataSource = null;
-                dgvAwards.DataSource = _awardStorage.GetAll();
+                logic.RemoveAward(award);
+                UpdateDgvAwards();
             }
+        }
+
+        private void ctlAddUser_Click(object sender, EventArgs e)
+        {
+            AddUser();
+        }
+
+        private void ctlEditUser_Click(object sender, EventArgs e)
+        {
+            EditUser();
+        }
+
+        private void ctlDeleteUser_Click(object sender, EventArgs e)
+        {
+            DeleteUser();
+        }
+
+        private void ctlAddAward_Click(object sender, EventArgs e)
+        {
+            AddAward();
+        }
+
+        private void ctlEditAward_Click(object sender, EventArgs e)
+        {
+            EditAward();
+        }
+
+        private void ctlDeleteAward_Click(object sender, EventArgs e)
+        {
+            DeleteAward();
         }
 
         private void SortUsersByFirstNameAsc()
         {
-            _userStorage = new UserStorage(_userStorage.GetAll().OrderBy(u => u.FirstName).ToList());
+            logic.SetAllUsers(logic.GetAllUsers().OrderBy(u => u.FirstName).ToList());
         }
 
         private void SortUsersByFirstNameDesc()
         {
-            _userStorage = new UserStorage(_userStorage.GetAll().OrderByDescending(u => u.FirstName).ToList());
+            logic.SetAllUsers(logic.GetAllUsers().OrderByDescending(u => u.FirstName).ToList());
         }
 
         private void SortUsersByLastNameAsc()
         {
-            _userStorage = new UserStorage(_userStorage.GetAll().OrderBy(u => u.LastName).ToList());
+            logic.SetAllUsers(logic.GetAllUsers().OrderBy(u => u.LastName).ToList());
         }
 
         private void SortUsersByLastNameDesc()
         {
-            _userStorage = new UserStorage(_userStorage.GetAll().OrderByDescending(u => u.LastName).ToList());
+            logic.SetAllUsers(logic.GetAllUsers().OrderByDescending(u => u.LastName).ToList());
         }
 
         private void SortUsersByAgeAsc()
         {
-            _userStorage = new UserStorage(_userStorage.GetAll().OrderBy(u => u.Age).ToList());
+            logic.SetAllUsers(logic.GetAllUsers().OrderBy(u => u.Age).ToList());
         }
 
         private void SortUsersByAgeDesc()
         {
-            _userStorage = new UserStorage(_userStorage.GetAll().OrderByDescending(u => u.Age).ToList());
+            logic.SetAllUsers(logic.GetAllUsers().OrderByDescending(u => u.Age).ToList());
         }
 
         private void dgvUsers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -206,8 +239,12 @@ namespace Task1
                 default:
                     break;
             }
-            dgvUsers.DataSource = null;
-            dgvUsers.DataSource = _userStorage.GetAll();
+            UpdateDgvUsers();
+        }
+
+        private void ctlClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

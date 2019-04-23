@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UsersAndAwards.Entities;
 
-namespace Task1
+namespace UsersAndAwards
 {
     public partial class AwardForm : Form
     {
@@ -20,11 +21,13 @@ namespace Task1
         public AwardForm()
         {
             InitializeComponent();
+            Text = "Добавить награду";
         }
 
         public AwardForm(Award award)
         {
             InitializeComponent();
+            Text = "Редактировать награду";
             tbTitle.Text = award.Title;
             tbDescription.Text = award.Description;
         }

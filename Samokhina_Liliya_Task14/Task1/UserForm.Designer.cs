@@ -1,4 +1,4 @@
-﻿namespace Task1
+﻿namespace UsersAndAwards
 {
     partial class UserForm
     {
@@ -152,6 +152,7 @@
             this.Name = "UserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Добавить пользователя";
+            this.Load += new System.EventHandler(this.UserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

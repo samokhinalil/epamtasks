@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task1
+namespace UsersAndAwards.Entities
 {
-    class UserViewModel
+    public class UserViewModel
     {
         public User User { get; set; }
         public string FirstName { get; set; }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UsersAndAwards.Entities;
 
-namespace Task1
+namespace UsersAndAwards.Storage
 {
     public class UserStorage : IStorage<User>
     {

@@ -1,4 +1,4 @@
-﻿namespace Task1
+﻿namespace UsersAndAwards
 {
     partial class MainForm
     {
@@ -41,13 +41,13 @@
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.пользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctlFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctlClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctlUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlAddUser = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlEditUser = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlDeleteUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.наградыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctlAwards = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlAddAward = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlEditAward = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlDeleteAward = new System.Windows.Forms.ToolStripMenuItem();
@@ -171,88 +171,89 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem,
-            this.пользователиToolStripMenuItem,
-            this.наградыToolStripMenuItem});
+            this.ctlFile,
+            this.ctlUsers,
+            this.ctlAwards});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(559, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // файлToolStripMenuItem
+            // ctlFile
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.выходToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.ctlFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctlClose});
+            this.ctlFile.Name = "ctlFile";
+            this.ctlFile.Size = new System.Drawing.Size(48, 20);
+            this.ctlFile.Text = "Файл";
             // 
-            // выходToolStripMenuItem
+            // ctlClose
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
+            this.ctlClose.Name = "ctlClose";
+            this.ctlClose.Size = new System.Drawing.Size(180, 22);
+            this.ctlClose.Text = "Выход";
+            this.ctlClose.Click += new System.EventHandler(this.ctlClose_Click);
             // 
-            // пользователиToolStripMenuItem
+            // ctlUsers
             // 
-            this.пользователиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctlUsers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ctlAddUser,
             this.ctlEditUser,
             this.ctlDeleteUser});
-            this.пользователиToolStripMenuItem.Name = "пользователиToolStripMenuItem";
-            this.пользователиToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
-            this.пользователиToolStripMenuItem.Text = "Пользователи";
+            this.ctlUsers.Name = "ctlUsers";
+            this.ctlUsers.Size = new System.Drawing.Size(97, 20);
+            this.ctlUsers.Text = "Пользователи";
             // 
             // ctlAddUser
             // 
             this.ctlAddUser.Name = "ctlAddUser";
-            this.ctlAddUser.Size = new System.Drawing.Size(163, 22);
+            this.ctlAddUser.Size = new System.Drawing.Size(180, 22);
             this.ctlAddUser.Text = "Добавить...";
             this.ctlAddUser.Click += new System.EventHandler(this.ctlAddUser_Click);
             // 
             // ctlEditUser
             // 
             this.ctlEditUser.Name = "ctlEditUser";
-            this.ctlEditUser.Size = new System.Drawing.Size(163, 22);
+            this.ctlEditUser.Size = new System.Drawing.Size(180, 22);
             this.ctlEditUser.Text = "Редактировать...";
             this.ctlEditUser.Click += new System.EventHandler(this.ctlEditUser_Click);
             // 
             // ctlDeleteUser
             // 
             this.ctlDeleteUser.Name = "ctlDeleteUser";
-            this.ctlDeleteUser.Size = new System.Drawing.Size(163, 22);
+            this.ctlDeleteUser.Size = new System.Drawing.Size(180, 22);
             this.ctlDeleteUser.Text = "Удалить...";
             this.ctlDeleteUser.Click += new System.EventHandler(this.ctlDeleteUser_Click);
             // 
-            // наградыToolStripMenuItem
+            // ctlAwards
             // 
-            this.наградыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctlAwards.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ctlAddAward,
             this.ctlEditAward,
             this.ctlDeleteAward});
-            this.наградыToolStripMenuItem.Name = "наградыToolStripMenuItem";
-            this.наградыToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.наградыToolStripMenuItem.Text = "Награды";
+            this.ctlAwards.Name = "ctlAwards";
+            this.ctlAwards.Size = new System.Drawing.Size(67, 20);
+            this.ctlAwards.Text = "Награды";
             // 
             // ctlAddAward
             // 
             this.ctlAddAward.Name = "ctlAddAward";
-            this.ctlAddAward.Size = new System.Drawing.Size(163, 22);
+            this.ctlAddAward.Size = new System.Drawing.Size(180, 22);
             this.ctlAddAward.Text = "Добавить...";
             this.ctlAddAward.Click += new System.EventHandler(this.ctlAddAward_Click);
             // 
             // ctlEditAward
             // 
             this.ctlEditAward.Name = "ctlEditAward";
-            this.ctlEditAward.Size = new System.Drawing.Size(163, 22);
+            this.ctlEditAward.Size = new System.Drawing.Size(180, 22);
             this.ctlEditAward.Text = "Редактировать...";
             this.ctlEditAward.Click += new System.EventHandler(this.ctlEditAward_Click);
             // 
             // ctlDeleteAward
             // 
             this.ctlDeleteAward.Name = "ctlDeleteAward";
-            this.ctlDeleteAward.Size = new System.Drawing.Size(163, 22);
+            this.ctlDeleteAward.Size = new System.Drawing.Size(180, 22);
             this.ctlDeleteAward.Text = "Удалить...";
             this.ctlDeleteAward.Click += new System.EventHandler(this.ctlDeleteAward_Click);
             // 
@@ -289,12 +290,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem пользователиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ctlFile;
+        private System.Windows.Forms.ToolStripMenuItem ctlClose;
+        private System.Windows.Forms.ToolStripMenuItem ctlUsers;
         private System.Windows.Forms.ToolStripMenuItem ctlAddUser;
         private System.Windows.Forms.ToolStripMenuItem ctlEditUser;
-        private System.Windows.Forms.ToolStripMenuItem наградыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ctlAwards;
         private System.Windows.Forms.ToolStripMenuItem ctlAddAward;
         private System.Windows.Forms.ToolStripMenuItem ctlEditAward;
         private System.Windows.Forms.ToolStripMenuItem ctlDeleteUser;

@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UsersAndAwards.Entities;
+using UsersAndAwards.Logic;
 
-namespace Task1
+namespace UsersAndAwards
 {
     public partial class UserForm : Form
     {
@@ -20,29 +22,30 @@ namespace Task1
         public List<Award> UserAwards { get; set; } = new List<Award>();
         public List<Award> Awards { get; set; } = new List<Award>();
 
-        public UserForm(AwardStorage awardStorage)
+        public UserForm(BLogic logic)
         {
             InitializeComponent();
-            AutoValidate = AutoValidate.EnableAllowFocusChange;
-            Awards = awardStorage.GetAll();
+            Text = "Добавить пользователя";
+
+            Awards = logic.GetAllAwards();
             foreach (var award in Awards)
             {
                 ctlAwards.Items.Add(award.Title);
             }
         }
 
-        public UserForm(User user, AwardStorage awardStorage)
+        public UserForm(User user, BLogic logic)
         {
             InitializeComponent();
-            AutoValidate = AutoValidate.EnableAllowFocusChange;
+            Text = "Редактировать пользователя";
+
             tbFirstName.Text = user.FirstName;
             tbLastName.Text = user.LastName;
             ctlBirthDate.Text = user.BirthDate.ToShortDateString();
             UserAwards = user.UserAwards;
-            Awards = awardStorage.GetAll();
+            Awards = logic.GetAllAwards();
 
             int currentIndex = 0;
-
             foreach (var award in Awards)
             {
                 ctlAwards.Items.Add(award.Title);
@@ -58,6 +61,11 @@ namespace Task1
                     currentIndex++;
                 }
             }
+        }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            AutoValidate = AutoValidate.EnableAllowFocusChange;
         }
 
         private void btnOK_Click(object sender, EventArgs e)

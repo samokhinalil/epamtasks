@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{90DE1F9C-CB77-4FEC-9E14-0F20288E577F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Task1</RootNamespace>
-    <AssemblyName>Task1</AssemblyName>
+    <RootNamespace>UsersAndAwards</RootNamespace>
+    <AssemblyName>UsersAndAwards</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,32 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Award.cs" />
     <Compile Include="AwardForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AwardForm.Designer.cs">
       <DependentUpon>AwardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AwardStorage.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="IStorage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserForm.Designer.cs">
       <DependentUpon>UserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserStorage.cs" />
-    <Compile Include="UserViewModel.cs" />
     <EmbeddedResource Include="AwardForm.resx">
       <DependentUpon>AwardForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +80,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
@@ -102,6 +97,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UsersAndAwards.Entities\UsersAndAwards.Entities.csproj">
+      <Project>{25277b81-0235-4765-a574-1d4721dfaf9a}</Project>
+      <Name>UsersAndAwards.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersAndAwards.Logic\UsersAndAwards.Logic.csproj">
+      <Project>{63c73dcc-49ac-416b-9ac9-d6d4d9cda025}</Project>
+      <Name>UsersAndAwards.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

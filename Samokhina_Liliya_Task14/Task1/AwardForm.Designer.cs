@@ -1,4 +1,4 @@
-﻿namespace Task1
+﻿namespace UsersAndAwards
 {
     partial class AwardForm
     {

@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UsersAndAwards.Entities;
 
-namespace Task1
+namespace UsersAndAwards.Storage
 {
     public class AwardStorage : IStorage<Award>
     {
         private List<Award> _awards = new List<Award>();
+
+        public AwardStorage()
+        {
+        }
+
+        public AwardStorage(List<Award> awards)
+        {
+            _awards = awards;
+        }
 
         public void Add(Award item)
         {
