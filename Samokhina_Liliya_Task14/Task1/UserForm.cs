@@ -23,6 +23,7 @@ namespace Task1
         public UserForm(AwardStorage awardStorage)
         {
             InitializeComponent();
+            AutoValidate = AutoValidate.EnableAllowFocusChange;
             Awards = awardStorage.GetAll();
             foreach (var award in Awards)
             {
@@ -33,7 +34,7 @@ namespace Task1
         public UserForm(User user, AwardStorage awardStorage)
         {
             InitializeComponent();
-            
+            AutoValidate = AutoValidate.EnableAllowFocusChange;
             tbFirstName.Text = user.FirstName;
             tbLastName.Text = user.LastName;
             ctlBirthDate.Text = user.BirthDate.ToShortDateString();

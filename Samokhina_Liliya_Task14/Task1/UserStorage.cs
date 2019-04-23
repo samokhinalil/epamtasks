@@ -10,6 +10,15 @@ namespace Task1
     {
         private List<User> _users = new List<User>();
 
+        public UserStorage()
+        {
+        }
+
+        public UserStorage(List<User> users)
+        {
+            _users = users;
+        }
+
         public void Add(User item)
         {
             _users.Add(item);

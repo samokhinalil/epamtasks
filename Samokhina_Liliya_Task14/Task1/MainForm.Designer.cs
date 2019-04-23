@@ -67,7 +67,7 @@
             this.ctlTabs.Location = new System.Drawing.Point(0, 24);
             this.ctlTabs.Name = "ctlTabs";
             this.ctlTabs.SelectedIndex = 0;
-            this.ctlTabs.Size = new System.Drawing.Size(635, 373);
+            this.ctlTabs.Size = new System.Drawing.Size(559, 274);
             this.ctlTabs.TabIndex = 0;
             // 
             // tabUsers
@@ -76,7 +76,7 @@
             this.tabUsers.Location = new System.Drawing.Point(4, 22);
             this.tabUsers.Name = "tabUsers";
             this.tabUsers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabUsers.Size = new System.Drawing.Size(627, 347);
+            this.tabUsers.Size = new System.Drawing.Size(551, 248);
             this.tabUsers.TabIndex = 0;
             this.tabUsers.Text = "Пользователи";
             this.tabUsers.UseVisualStyleBackColor = true;
@@ -93,8 +93,9 @@
             this.dgvUsers.Location = new System.Drawing.Point(3, 3);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
-            this.dgvUsers.Size = new System.Drawing.Size(621, 341);
+            this.dgvUsers.Size = new System.Drawing.Size(545, 244);
             this.dgvUsers.TabIndex = 0;
+            this.dgvUsers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvUsers_ColumnHeaderMouseClick);
             // 
             // FirstName
             // 
@@ -137,7 +138,7 @@
             this.tabAwards.Location = new System.Drawing.Point(4, 22);
             this.tabAwards.Name = "tabAwards";
             this.tabAwards.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAwards.Size = new System.Drawing.Size(627, 347);
+            this.tabAwards.Size = new System.Drawing.Size(551, 248);
             this.tabAwards.TabIndex = 1;
             this.tabAwards.Text = "Награды";
             this.tabAwards.UseVisualStyleBackColor = true;
@@ -152,7 +153,7 @@
             this.dgvAwards.Location = new System.Drawing.Point(3, 3);
             this.dgvAwards.MultiSelect = false;
             this.dgvAwards.Name = "dgvAwards";
-            this.dgvAwards.Size = new System.Drawing.Size(621, 341);
+            this.dgvAwards.Size = new System.Drawing.Size(545, 242);
             this.dgvAwards.TabIndex = 0;
             // 
             // Title
@@ -175,7 +176,7 @@
             this.наградыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(635, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(559, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -259,7 +260,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 397);
+            this.ClientSize = new System.Drawing.Size(559, 298);
             this.Controls.Add(this.ctlTabs);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;

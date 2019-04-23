@@ -20,5 +20,10 @@ namespace Task1
             Description = description;
             id++;
         }
+
+        public override string ToString()
+        {
+            return Title;
+        }
     }
 }

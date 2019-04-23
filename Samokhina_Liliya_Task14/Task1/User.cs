@@ -18,22 +18,6 @@ namespace Task1
 
         public List<Award> UserAwards { get; set; }
 
-        public string Awards
-        {
-            get
-            {
-                StringBuilder awardsView = new StringBuilder();
-                if (UserAwards != null)
-                {
-                    foreach (var award in UserAwards)
-                    {
-                        awardsView.Append(award.Title + ";");
-                    }
-                }
-                return awardsView.ToString();
-            }
-        }
-
         public int ID { get; private set; }
 
         public string FirstName

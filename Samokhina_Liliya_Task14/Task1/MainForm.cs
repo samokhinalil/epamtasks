@@ -12,9 +12,12 @@ namespace Task1
 {
     public partial class MainForm : System.Windows.Forms.Form
     {
+        private enum SortMode { Asceding, Desceding };
+        private SortMode _sortMode = SortMode.Asceding;
+
         private UserStorage _userStorage = new UserStorage();
         private AwardStorage _awardStorage = new AwardStorage();
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -36,7 +39,7 @@ namespace Task1
             _userStorage.Add(user3);
             
             dgvUsers.DataSource = null;
-            dgvUsers.DataSource = _userStorage.GetAll();
+            dgvUsers.DataSource = _userStorage.GetAll().Select(u => new UserViewModel(u)).ToList();
 
             dgvAwards.DataSource = null;
             dgvAwards.DataSource = _awardStorage.GetAll();
@@ -57,7 +60,8 @@ namespace Task1
         
         private void ctlEditUser_Click(object sender, EventArgs e)
         {
-            User user = (User)dgvUsers.CurrentRow.DataBoundItem;
+            UserViewModel userView = (UserViewModel)dgvUsers.CurrentRow.DataBoundItem;
+            User user = userView.User;
             UserForm userForm = new UserForm(user, _awardStorage) { Text = "Редактировать пользователя" };
             userForm.ShowDialog();
             if (userForm.DialogResult == DialogResult.OK)
@@ -73,8 +77,9 @@ namespace Task1
 
         private void ctlDeleteUser_Click(object sender, EventArgs e)
         {
-            User user = (User)dgvUsers.CurrentRow.DataBoundItem;
-            if(MessageBox.Show($"Удалить пользователя {user.FirstName}?", "Удаление пользователя",
+            UserViewModel userView = (UserViewModel)dgvUsers.CurrentRow.DataBoundItem;
+            User user = userView.User;
+            if (MessageBox.Show($"Удалить пользователя {user.FirstName}?", "Удаление пользователя",
                 MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 _userStorage.Remove(user);
@@ -126,6 +131,83 @@ namespace Task1
                 dgvAwards.DataSource = null;
                 dgvAwards.DataSource = _awardStorage.GetAll();
             }
+        }
+
+        private void SortUsersByFirstNameAsc()
+        {
+            _userStorage = new UserStorage(_userStorage.GetAll().OrderBy(u => u.FirstName).ToList());
+        }
+
+        private void SortUsersByFirstNameDesc()
+        {
+            _userStorage = new UserStorage(_userStorage.GetAll().OrderByDescending(u => u.FirstName).ToList());
+        }
+
+        private void SortUsersByLastNameAsc()
+        {
+            _userStorage = new UserStorage(_userStorage.GetAll().OrderBy(u => u.LastName).ToList());
+        }
+
+        private void SortUsersByLastNameDesc()
+        {
+            _userStorage = new UserStorage(_userStorage.GetAll().OrderByDescending(u => u.LastName).ToList());
+        }
+
+        private void SortUsersByAgeAsc()
+        {
+            _userStorage = new UserStorage(_userStorage.GetAll().OrderBy(u => u.Age).ToList());
+        }
+
+        private void SortUsersByAgeDesc()
+        {
+            _userStorage = new UserStorage(_userStorage.GetAll().OrderByDescending(u => u.Age).ToList());
+        }
+
+        private void dgvUsers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0:
+                    if (_sortMode == SortMode.Asceding)
+                    {
+                        SortUsersByFirstNameAsc();
+                        _sortMode = SortMode.Desceding;
+                    }
+                    else
+                    {
+                        SortUsersByFirstNameDesc();
+                        _sortMode = SortMode.Asceding;
+                    }
+                    break;
+                case 1:
+                    if (_sortMode == SortMode.Asceding)
+                    {
+                        SortUsersByLastNameAsc();
+                        _sortMode = SortMode.Desceding;
+                    }
+                    else
+                    {
+                        SortUsersByLastNameDesc();
+                        _sortMode = SortMode.Asceding;
+                    }
+                    break;
+                case 3:
+                    if (_sortMode == SortMode.Asceding)
+                    {
+                        SortUsersByAgeAsc();
+                        _sortMode = SortMode.Desceding;
+                    }
+                    else
+                    {
+                        SortUsersByAgeDesc();
+                        _sortMode = SortMode.Asceding;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            dgvUsers.DataSource = null;
+            dgvUsers.DataSource = _userStorage.GetAll();
         }
     }
 }
