@@ -13,6 +13,10 @@ namespace UsersAndAwards.Storage
 
         public AwardStorage()
         {
+            Award award1 = new Award("award1", "award1");
+            Award award2 = new Award("award2", "award2");
+            _awards.Add(award1);
+            _awards.Add(award2);
         }
 
         public AwardStorage(List<Award> awards)

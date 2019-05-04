@@ -24,20 +24,6 @@ namespace UsersAndAwards
             dgvUsers.AutoGenerateColumns = false;
             dgvAwards.AutoGenerateColumns = false;
 
-            Award award1 = new Award("award1", "award1");
-            Award award2 = new Award("award2", "award2");
-
-            logic.AddAward(award1);
-            logic.AddAward(award2);
-
-            User user1 = new User("user1 firstName", "user1 lastName", new DateTime(1998, 10, 27), new List<Award> { award1, award2 });
-            User user2 = new User("user2 firstName", "user2 lastName", new DateTime(2000, 10, 25), new List<Award> { award1 });
-            User user3 = new User("user3 firstName", "user3 lastName", new DateTime(1995, 10, 23), new List<Award> { award2 });
-
-            logic.AddUser(user1);
-            logic.AddUser(user2);
-            logic.AddUser(user3);
-
             UpdateDgvUsers();
             UpdateDgvAwards();
         }
@@ -53,7 +39,7 @@ namespace UsersAndAwards
             dgvAwards.DataSource = null;
             dgvAwards.DataSource = logic.GetAllAwards();
         }
-        
+
         private void AddUser()
         {
             UserForm userForm = new UserForm(logic);
@@ -65,7 +51,7 @@ namespace UsersAndAwards
                 UpdateDgvUsers();
             }
         }
-        
+
         private void EditUser()
         {
             UserViewModel userView = (UserViewModel)dgvUsers.CurrentRow.DataBoundItem;
@@ -81,7 +67,7 @@ namespace UsersAndAwards
                 UpdateDgvUsers();
             }
         }
-        
+
         private void DeleteUser()
         {
             UserViewModel userView = (UserViewModel)dgvUsers.CurrentRow.DataBoundItem;
@@ -93,7 +79,7 @@ namespace UsersAndAwards
                 UpdateDgvUsers();
             }
         }
-        
+
         private void AddAward()
         {
             AwardForm awardForm = new AwardForm();
@@ -104,7 +90,7 @@ namespace UsersAndAwards
                 UpdateDgvAwards();
             }
         }
-        
+
         private void EditAward()
         {
             Award award = (Award)dgvAwards.CurrentRow.DataBoundItem;

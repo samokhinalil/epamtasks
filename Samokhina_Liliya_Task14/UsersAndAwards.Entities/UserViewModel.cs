@@ -18,7 +18,11 @@ namespace UsersAndAwards.Entities
         {
             get
             {
-                return string.Join("; ", User.UserAwards);
+                if(User.UserAwards != null)
+                {
+                    return string.Join("; ", User.UserAwards);
+                }
+                return string.Empty;
             }
         }
 
