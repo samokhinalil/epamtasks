@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UsersAndAwards.Entities;
 using UsersAndAwards.Logic;
 using UsersAndAwards.Web.Models;
 
@@ -15,13 +16,13 @@ namespace UsersAndAwards.Web.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(logic.GetAllUsers().Select(u=> UserWebViewModel.GetViewModel(u, u.UserAwards, logic.GetAllAwards())));
+            return View(logic.GetAllUsers().Select(u=> UserWebViewModel.GetViewModel(u, logic.GetAllAwards())));
         }
 
         public ActionResult Edit(int id)
         {
             var user = logic.GetAllUsers().FirstOrDefault(u => u.ID == id);
-            return View(UserWebViewModel.GetViewModel(user, user.UserAwards, logic.GetAllAwards()));
+            return View(UserWebViewModel.GetViewModel(user, logic.GetAllAwards()));
         }
 
         [HttpPost]
@@ -38,6 +39,48 @@ namespace UsersAndAwards.Web.Controllers
                 logic.EditUser(user);
             }
 
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Create()
+        {
+            return View(UserWebViewModel.GetViewModel(null, logic.GetAllAwards()));
+        }
+
+        [HttpPost]
+        public ActionResult Create(UserWebViewModel userModel)
+        {
+            if (ModelState.IsValid)
+            {
+                logic.AddUser(userModel.ToUser());
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(UserWebViewModel.GetViewModel(userModel.ToUser(), logic.GetAllAwards()));
+            }
+        }
+
+        public ActionResult Details(int id)
+        {
+            var user = logic.GetAllUsers().FirstOrDefault(u => u.ID == id);
+            return View(UserWebViewModel.GetViewModel(user, logic.GetAllAwards()));
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var user = logic.GetAllUsers().FirstOrDefault(u => u.ID == id);
+            return View(UserWebViewModel.GetViewModel(user, logic.GetAllAwards()));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, UserWebViewModel userModel)
+        {
+            var user = logic.GetAllUsers().FirstOrDefault(u => u.ID == id);
+            if(user!= null)
+            {
+                logic.RemoveUser(user);
+            }
             return RedirectToAction("Index");
         }
     }

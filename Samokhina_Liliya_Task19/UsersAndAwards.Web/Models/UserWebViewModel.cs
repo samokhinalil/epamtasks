@@ -22,21 +22,21 @@ namespace UsersAndAwards.Web.Models
         {
             get
             {
-                if (AvailableAwards != null)
+                if (UserAwards != null)
                 {
-                    return string.Join("; ", AvailableAwards);
+                    return string.Join("; ", UserAwards);
                 }
                 return string.Empty;
             }
         }
 
-        public List<Award> Awards { get; set; }
+        public List<Award> UserAwards { get; set; }
 
-        public List<AwardViewModel> AvailableAwards { get; set; }
+        public List<AwardViewModel> AllAwards { get; set; }
 
         public User ToUser()
         {
-            var user = new User(ID, FirstName, LastName, BirthDate, AvailableAwards
+            var user = new User(ID, FirstName, LastName, BirthDate, AllAwards
                     .Where(a => a.Checked == true)
                     .Select(a => new Award
                     {
@@ -47,22 +47,32 @@ namespace UsersAndAwards.Web.Models
             return user;
         }
 
-        public static UserWebViewModel GetViewModel(User user, List<Award> availableAwards, List<Award> allAwards)
+        public static UserWebViewModel GetViewModel(User user, List<Award> allAwards)
         {
             var userModel = new UserWebViewModel();
-            userModel.ID = user.ID;
-            userModel.FirstName = user.FirstName;
-            userModel.LastName = user.LastName;
-            userModel.BirthDate = user.BirthDate;
-            userModel.Age = user.Age;
-            userModel.Awards = allAwards;
-            var awards = new List<AwardViewModel>();
-            foreach (var award in availableAwards)
+            if (user != null)
             {
-                awards.Add(AwardViewModel.GetViewModel(award, user.UserAwards));
+                userModel.ID = user.ID;
+                userModel.FirstName = user.FirstName;
+                userModel.LastName = user.LastName;
+                userModel.BirthDate = user.BirthDate;
+                userModel.Age = user.Age;
+                userModel.UserAwards = user.UserAwards;
+            }
+            var awards = new List<AwardViewModel>();
+            foreach (var award in allAwards)
+            {
+                if (user != null)
+                {
+                    awards.Add(AwardViewModel.GetViewModel(award, user.UserAwards));
+                }
+                else
+                {
+                    awards.Add(AwardViewModel.GetViewModel(award));
+                }
             }
 
-            userModel.AvailableAwards = awards.ToList();
+            userModel.AllAwards = awards.ToList();
             return userModel;
         }
     }

@@ -23,9 +23,14 @@ namespace UsersAndAwards.Web.Models
             return model;
         }
 
-        public override string ToString()
+        public static AwardViewModel GetViewModel(Award award)
         {
-            return Title;
+            var model = new AwardViewModel();
+            model.ID = award.ID;
+            model.Title = award.Title;
+            model.Description = award.Description;
+            model.Checked = false;
+            return model;
         }
     }
 }
